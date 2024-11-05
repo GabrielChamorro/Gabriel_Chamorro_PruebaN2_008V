@@ -11,7 +11,6 @@ import { GBCHLoginPage } from './gb-ch-login.page';
 @NgModule({
   imports: [
     CommonModule,
-    FormsModule,
     IonicModule,
     GBCHLoginPageRoutingModule,
     ReactiveFormsModule

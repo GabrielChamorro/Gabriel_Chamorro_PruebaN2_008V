@@ -11,7 +11,6 @@ import { GBCHCatalogoPage } from './gb-ch-catalogo.page';
 @NgModule({
   imports: [
     CommonModule,
-    FormsModule,
     IonicModule,
     GBCHCatalogoPageRoutingModule,
     ReactiveFormsModule

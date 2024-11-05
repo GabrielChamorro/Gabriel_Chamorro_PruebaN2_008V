@@ -5,9 +5,20 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">GB_CH_login</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <form [formGroup]="formulario" (submit)="datosFormulario()">
+    
+    <ion-card>
+      <h1 style="text-align: center;">Bienvenido</h1>
+      <ion-item>
+        <ion-input type="text" label="usuario" labelPlacement="floating" fill="outline" formControlName="usuario"></ion-input>
+      </ion-item>
+      <br>
+      <ion-item>
+        <ion-input type="password" label="contraseña" labelPlacement="floating" fill="outline" formControlName="contrasenia"></ion-input>
+      </ion-item>
+      <br>
+        <ion-button type="submit" role="submit">Ingresar</ion-button>
+  </ion-card>
+  
+  </form>
 </ion-content>

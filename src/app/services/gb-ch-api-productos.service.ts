@@ -5,7 +5,7 @@ import { Observable, BehaviorSubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
 //importar interfazes que voy a usar
-
+//recordar ver tema del guard
 import { ProductosFormato } from '../interfaces/GB_CH_interfazProductos';
 import { RespuestaAPIProductosFormato } from '../interfaces/GB_CH_interfazRespuestaAPIProductos';
 
@@ -21,4 +21,6 @@ export class GbChApiProductosService {
   constructor(
     private Http : HttpClient
   ) { }
+
+  
 }
