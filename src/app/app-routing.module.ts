@@ -11,6 +11,14 @@ const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full'
   },
+  {
+    path: 'gb-ch-login',
+    loadChildren: () => import('./gb-ch-login/gb-ch-login.module').then( m => m.GBCHLoginPageModule)
+  },
+  {
+    path: 'gb-ch-catalogo',
+    loadChildren: () => import('./gb-ch-catalogo/gb-ch-catalogo.module').then( m => m.GBCHCatalogoPageModule)
+  },
 ];
 
 @NgModule({
