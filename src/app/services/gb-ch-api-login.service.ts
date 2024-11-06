@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 //Importaciones para trabajar con Http requests y observadores
 import { Observable, BehaviorSubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-
+import { delay } from 'rxjs';
 //Importo aqui la interfaz para poder trabajar con ella
 import { LoginFormato } from './../interfaces/GB_CH_interfazLogin'
 
@@ -12,17 +12,18 @@ import { LoginFormato } from './../interfaces/GB_CH_interfazLogin'
 })
 export class GBCHApiLoginService {
   //colocar aqui las variables y observadores por temas de orden
-  private correcto = new BehaviorSubject<LoginFormato | null>(null);
-  public $correcto = this.correcto.asObservable;
+  private $correcto = new BehaviorSubject<LoginFormato | null>(null);
+  public correcto = this.$correcto.asObservable();
  
-  private cargando = new BehaviorSubject<boolean>(false);
-  public $cargando = this.cargando.asObservable
+  private $cargando = new BehaviorSubject<boolean>(false);
+  public cargando = this.$cargando.asObservable();
   
   //creo la variable que almacenara los datos de el usuario actual, ya inicialisada (con nada adentro)
   //tambien creo la variable para el token, espero que funcione o si no voy a dejar que un zombistein me mate a palos (en el juego)
   public usuarioActual: LoginFormato | null = null;
   public tokenDeAcceso: string | null = null;
   private readonly UrlParaLogin = "https://dummyjson.com/auth/login"
+  private readonly UrlParaAuthenticacion = "https://dummyjson.com/auth/me"
   
   constructor(
     //debo asignarle una variable a HttpCliente para poder llamarlo y usarlo despues
@@ -42,7 +43,7 @@ export class GBCHApiLoginService {
     //el post es de tipo "LoginFormato"
     //aqui deberia añadir una verficicacion para verificar si la operacion es exitosa
     //y si lo es se debe almacenar el token en la variable usando un if
-    this.cargando.next(true);
+    this.$cargando.next(true);
     this.Http.post<LoginFormato>(
       //el formato aqui es de acuerdo a lo especificado por dummyjson (osea la lecera que usa la prueba como backend)
       this.UrlParaLogin,
@@ -56,10 +57,16 @@ export class GBCHApiLoginService {
     
     .subscribe(datos => {
       this.usuarioActual = datos
-      console.log(datos)
+      console.log("hola",datos)
+      //aqui guardo el token de accesso en la variable
+      this.tokenDeAcceso = datos.accessToken
+      console.log("hola",this.tokenDeAcceso)
+      alert("Bienvenido: "+datos.username)
       //ya no esta cargando
-      this.cargando.next(false);
+      this.$cargando.next(false);
     })
+
+    
   
   }
 

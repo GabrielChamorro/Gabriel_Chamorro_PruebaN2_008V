@@ -6,7 +6,8 @@
 
 <ion-content [fullscreen]="true">
   
-
+  <ion-spinner color="primary" *ngIf="producto.cargando | async"></ion-spinner>
+  
   <ion-content>
     <ion-list *ngFor="let dato of datosProducto.products">
       

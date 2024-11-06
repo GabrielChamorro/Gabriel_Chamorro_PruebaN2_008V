@@ -5,6 +5,10 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  <ion-label *ngIf="login.cargando | async">
+    cargando
+  </ion-label>
+
   <form [formGroup]="formulario" (submit)="datosFormulario()">
     
     <ion-card>
